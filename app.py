@@ -1,5 +1,6 @@
 import streamlit as st
 import pydeck as pdk
+import pandas as pd
 from engine import load_data, recommend, recommend_researchers
 
 st.set_page_config(
@@ -74,7 +75,7 @@ div[data-testid="stMetricValue"] {
     font-family: "Oswald", Arial, sans-serif;
 }
 
-.stButton > button, .stDownloadButton > button {
+.stButton > button {
     background-color: rgb(236, 92, 60);
     color: rgb(255, 255, 255);
     border: none;
@@ -82,7 +83,7 @@ div[data-testid="stMetricValue"] {
     font-weight: 600;
 }
 
-.stButton > button:hover, .stDownloadButton > button:hover {
+.stButton > button:hover {
     background-color: rgb(134, 215, 216);
     color: rgb(10, 40, 60);
 }
@@ -131,6 +132,8 @@ st.sidebar.image("CONNECT51_WHITE.png", width=180)
 st.sidebar.markdown("## Connect51 Controls")
 institution = st.sidebar.selectbox("Source institution", sorted(inst_df["institution_name"].unique()))
 subject = st.sidebar.selectbox("Subject area", sorted(inst_df["subject_area"].unique()))
+show_density = st.sidebar.toggle("Show opportunity density layer", value=True)
+show_labels = st.sidebar.toggle("Show country summary", value=True)
 run = st.sidebar.button("Generate Opportunities", use_container_width=True)
 
 if run:
@@ -155,39 +158,94 @@ if run:
 
     st.markdown('<h3 class="section-heading">Global Opportunity Map</h3>', unsafe_allow_html=True)
     map_df = results.merge(
-        inst_df[["institution_name", "latitude", "longitude"]],
-        on="institution_name",
+        inst_df[["institution_name", "country", "latitude", "longitude"]],
+        on=["institution_name", "country"],
         how="left"
     ).dropna(subset=["latitude", "longitude"]).copy()
 
     if not map_df.empty:
-        map_df["size"] = map_df["match_score"] * 1200
+        map_df["size"] = map_df["match_score"] * 3000
 
-        layer = pdk.Layer(
-            "ScatterplotLayer",
-            data=map_df,
-            get_position="[longitude, latitude]",
-            get_radius="size",
-            get_fill_color=[236, 92, 60, 180],
-            pickable=True,
+        layers = []
+
+        if show_density:
+            layers.append(
+                pdk.Layer(
+                    "HeatmapLayer",
+                    data=map_df,
+                    get_position="[longitude, latitude]",
+                    get_weight="match_score",
+                    radiusPixels=60,
+                    intensity=0.8,
+                    threshold=0.1,
+                )
+            )
+
+        layers.append(
+            pdk.Layer(
+                "ScatterplotLayer",
+                data=map_df,
+                get_position="[longitude, latitude]",
+                get_radius="size",
+                get_fill_color=[236, 92, 60, 230],
+                get_line_color=[255, 255, 255, 220],
+                line_width_min_pixels=1,
+                stroked=True,
+                pickable=True,
+            )
         )
 
-        view_state = pdk.ViewState(latitude=20, longitude=10, zoom=0.8, pitch=0)
+        if show_labels:
+            country_summary = (
+                map_df.groupby(["country", "latitude", "longitude"], as_index=False)
+                .agg(opportunities=("institution_name", "count"),
+                     avg_score=("match_score", "mean"))
+            )
+            country_summary["label"] = country_summary.apply(
+                lambda r: f"{r['country']}\n{int(r['avg_score'])}", axis=1
+            )
+            layers.append(
+                pdk.Layer(
+                    "TextLayer",
+                    data=country_summary,
+                    get_position="[longitude, latitude]",
+                    get_text="label",
+                    get_color=[10, 40, 60, 255],
+                    get_size=14,
+                    get_alignment_baseline="'bottom'",
+                    get_pixel_offset=[0, -18],
+                )
+            )
+
+        view_state = pdk.ViewState(latitude=18, longitude=10, zoom=0.85, pitch=0)
 
         tooltip = {
             "html": "<b>{institution_name}</b><br/>{country}<br/>Score: {match_score}<br/>{strategy_type}",
-            "style": {"backgroundColor": "rgba(10, 40, 60, 0.92)", "color": "white"},
+            "style": {"backgroundColor": "rgba(10, 40, 60, 0.95)", "color": "white"},
         }
 
         st.pydeck_chart(
             pdk.Deck(
-                layers=[layer],
+                layers=layers,
                 initial_view_state=view_state,
                 tooltip=tooltip,
-                map_style="mapbox://styles/mapbox/dark-v10",
+                map_style="mapbox://styles/mapbox/light-v9",
             ),
             use_container_width=True,
         )
+
+        if show_labels:
+            st.markdown('<h3 class="section-heading">Country Opportunity Summary</h3>', unsafe_allow_html=True)
+            country_table = (
+                map_df.groupby("country", as_index=False)
+                .agg(
+                    opportunities=("institution_name", "count"),
+                    average_match_score=("match_score", "mean")
+                )
+                .sort_values(["opportunities", "average_match_score"], ascending=False)
+            )
+            country_table["average_match_score"] = country_table["average_match_score"].round(1)
+            st.dataframe(country_table, use_container_width=True, hide_index=True)
 
     st.markdown('<h3 class="section-heading">Partner Score Comparison</h3>', unsafe_allow_html=True)
     chart = results.set_index("institution_name")["match_score"]
@@ -209,7 +267,7 @@ if run:
             The strongest immediate collaboration opportunity appears to be <b>{top_partner}</b> in <b>{top_country}</b>.<br><br>
             This institution leads the shortlist with a match score of <b>{top_score}</b>, indicating strong topic alignment,
             collaboration potential, and strategic relevance.<br><br>
-            The map above highlights where the strongest opportunities are concentrated globally, helping frame a more visual partnership strategy.
+            The map now combines visible opportunity markers, an optional density layer, and a country summary to make global prioritisation much easier to explain internally.
             </div>
             """,
             unsafe_allow_html=True,
@@ -219,6 +277,6 @@ if run:
         st.success(f"1. Prioritise institutional outreach to {top_partner} in {top_country}.")
         if not researcher_results.empty:
             st.success(f"2. Begin with a researcher-level introduction to {researcher_results.iloc[0]['researcher_name']}.")
-        st.success("3. Use the global map and shortlist together to shape a focused collaboration strategy around the highest-scoring opportunities.")
+        st.success("3. Use the map, density layer, and country summary together to shape a focused collaboration strategy around the strongest opportunities.")
 else:
     st.info("Use the controls on the left, then click 'Generate Opportunities'.")
