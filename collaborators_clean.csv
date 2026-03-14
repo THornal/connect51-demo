@@ -1,0 +1,20 @@
+unnamed:_0,subject_name,institution_id,institution_name,subject_id,institution_id_1,work_count,sum_fwci,mean_fwci,mean_citations,hex_colour
+0,Biomedical Sciences,184565670,Georgetown University,MHE_S3001,184565670,37,174.01,4.7,44.81,#0B6E6E
+1,Health Professions,184840846,Virginia Commonwealth University,MHE_S3002,184840846,68,1385.06,20.37,173.22,#0F8C8C
+2,Medicine,136199984,Harvard University,MHE_S3003,136199984,172,1433.99,8.34,68.57,#13A3A3
+3,Psychology,136199984,Harvard University,MHE_S3004,136199984,52,367.36,7.06,37.27,#2CB4B4
+4,Agricultural and Animal Sciences,2800056074,Smithsonian Conservation Biology Institute,MHE_S3005,2800056074,64,192.47,3.01,26.88,#006B52
+5,Biology,136199984,Harvard University,MHE_S3006,136199984,77,583.67,7.58,87.26,#009E73
+6,Neuroscience,40036882,Institute for Advanced Study,MHE_S3007,40036882,86,186.78,2.17,37.05,#22B88A
+7,Bio and Biomedical Engineering,1288214837,United States Naval Research Laboratory,MHE_S3008,1288214837,30,47.39,1.58,35.73,#A36F34
+8,Electrical and Electronic Engineering,24943067,Fudan University,MHE_S3009,24943067,35,206.66,5.9,88.77,#B54B16
+9,Computer Science,74973139,Carnegie Mellon University,MHE_S3015,74973139,66,497.18,7.53,72.71,#0B3A8C
+10,Earth and Planetary Sciences,1306266525,Goddard Space Flight Center,MHE_S3016,1306266525,191,617.5,3.23,38.03,#2F6BC2
+11,Environmental Science,32971472,Yale University,MHE_S3017,32971472,79,891.31,11.28,69.61,#4C84D9
+12,Materials Science,1288214837,United States Naval Research Laboratory,MHE_S3018,1288214837,59,133.12,2.26,41.71,#002366
+13,Physics,1306266525,Goddard Space Flight Center,MHE_S3020,1306266525,444,2481.0,5.59,49.52,#5A91E8
+14,Business and Management,97018004,Stanford University,MHE_S3021,97018004,30,937.62,31.25,272.73,#8E33B3
+15,Economics,136199984,Harvard University,MHE_S3022,136199984,32,208.4,6.51,44.19,#73009E
+16,Education,100005738,Brigham Young University,MHE_S3023,100005738,32,285.77,8.93,26.72,#A44CC6
+17,Political Science,241749,University of Cambridge,MHE_S3024,241749,36,1216.83,33.8,138.08,#4A006B
+18,Social Sciences,136199984,Harvard University,MHE_S3025,136199984,47,542.1,11.53,59.47,#5E1987

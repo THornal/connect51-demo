@@ -1,0 +1,11 @@
+unnamed:_0,institution_id,institution_name,subject_id,institution_id_1,work_count,sum_fwci,mean_fwci,mean_citations
+0,136199984,Harvard University,2,136199984,21,62.79,2.99,22.0
+1,184840846,Virginia Commonwealth University,3,184840846,101,2057.8,20.37,182.83
+2,201448701,University of Washington,4,201448701,29,118.07,4.07,22.38
+3,1174212,University of Southern California,5,1174212,20,143.91,7.2,5.3
+4,1288214837,United States Naval Research Laboratory,7,1288214837,108,383.77,3.55,49.67
+5,79741316,University of Pecs,8,79741316,26,445.34,17.13,56.23
+6,32971472,Yale University,13,32971472,52,819.21,15.75,80.08
+7,3124059619,China University of Geosciences,14,3124059619,29,172.02,5.93,54.17
+8,2800056074,Smithsonian Conservation Biology Institute,15,2800056074,85,166.87,1.96,16.02
+9,79576946,University of Pennsylvania,16,79576946,23,620.53,26.98,22.26
