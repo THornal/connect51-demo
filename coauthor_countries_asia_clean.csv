@@ -1,0 +1,23 @@
+country,country_code,sub_region,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,work_count_total
+China,CHN,Eastern Asia,121.0,130.0,159.0,199.0,249.0,231.0,265.0,216.0,162.0,103.0,1835.0
+Japan,JPN,Eastern Asia,50.0,36.0,31.0,39.0,45.0,40.0,36.0,65.0,31.0,22.0,395.0
+South Korea,KOR,Eastern Asia,20.0,31.0,30.0,23.0,34.0,24.0,41.0,41.0,37.0,31.0,312.0
+India,IND,Southern Asia,19.0,19.0,21.0,26.0,32.0,18.0,34.0,58.0,47.0,36.0,310.0
+Hong Kong,HKG,Eastern Asia,17.0,14.0,9.0,13.0,18.0,11.0,19.0,20.0,11.0,19.0,151.0
+Singapore,SGP,South-eastern Asia,18.0,11.0,8.0,19.0,23.0,10.0,17.0,20.0,15.0,6.0,147.0
+Bangladesh,BGD,Southern Asia,1.0,3.0,4.0,5.0,9.0,11.0,16.0,17.0,11.0,12.0,89.0
+Iran,IRN,Southern Asia,5.0,16.0,8.0,5.0,9.0,8.0,10.0,8.0,5.0,6.0,80.0
+Thailand,THA,South-eastern Asia,15.0,8.0,5.0,5.0,6.0,7.0,5.0,10.0,3.0,3.0,67.0
+Pakistan,PAK,Southern Asia,4.0,4.0,1.0,3.0,8.0,5.0,5.0,9.0,8.0,4.0,51.0
+Malaysia,MYS,South-eastern Asia,5.0,1.0,2.0,3.0,6.0,2.0,2.0,6.0,8.0,5.0,40.0
+Indonesia,IDN,South-eastern Asia,4.0,2.0,3.0,4.0,9.0,1.0,3.0,3.0,3.0,6.0,38.0
+Nepal,NPL,Southern Asia,0.0,0.0,2.0,2.0,6.0,6.0,4.0,8.0,7.0,2.0,37.0
+Philippines,PHL,South-eastern Asia,3.0,3.0,0.0,7.0,6.0,0.0,1.0,0.0,0.0,3.0,23.0
+Vietnam,VNM,South-eastern Asia,1.0,3.0,3.0,3.0,3.0,0.0,2.0,1.0,2.0,3.0,21.0
+Sri Lanka,LKA,Southern Asia,2.0,2.0,0.0,2.0,5.0,4.0,3.0,1.0,1.0,0.0,20.0
+Macao,MAC,Eastern Asia,0.0,1.0,1.0,1.0,6.0,2.0,1.0,1.0,1.0,2.0,16.0
+Mongolia,MNG,Eastern Asia,0.0,2.0,1.0,3.0,3.0,1.0,3.0,1.0,0.0,0.0,14.0
+Afghanistan,AFG,Southern Asia,1.0,0.0,0.0,0.0,0.0,0.0,1.0,2.0,0.0,0.0,4.0
+Brunei,BRN,South-eastern Asia,0.0,0.0,1.0,0.0,2.0,0.0,1.0,0.0,0.0,0.0,4.0
+Cambodia,KHM,South-eastern Asia,0.0,0.0,0.0,0.0,2.0,0.0,1.0,0.0,0.0,0.0,3.0
+Myanmar,MMR,South-eastern Asia,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,2.0

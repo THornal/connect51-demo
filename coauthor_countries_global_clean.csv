@@ -1,6 +1,4 @@
-unnamed:_0,unnamed:_1,unnamed:_2,work_count,unnamed:_4,unnamed:_5,unnamed:_6,unnamed:_7,unnamed:_8,unnamed:_9,unnamed:_10,unnamed:_11,unnamed:_12,work_count_total
-,,publication_year,2016.0,2017.0,2018.0,2019.0,2020.0,2021.0,2022.0,2023.0,2024.0,2025.0,
-country,country_code,sub-region,,,,,,,,,,,
+country,country_code,sub_region,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,work_count_total
 United States,USA,Northern America,1278.0,1319.0,1342.0,1428.0,1601.0,1743.0,1723.0,1765.0,1461.0,879.0,14539.0
 China,CHN,Eastern Asia,121.0,130.0,159.0,199.0,249.0,231.0,265.0,216.0,162.0,103.0,1835.0
 United Kingdom,GBR,Northern Europe,127.0,122.0,123.0,127.0,182.0,171.0,204.0,246.0,151.0,98.0,1551.0

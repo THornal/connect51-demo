@@ -1,18 +1,18 @@
-unnamed:_0,subject_name,display_name,subject_id,source_id,sum_fwci,mean_fwci,works_count,hex_colour
-0,Biomedical Sciences,Cancer Research,MHE_S3001,168522863,17.84070894703153,0.3795895520645006,47,#0B6E6E
-1,Health Professions,International Journal of Environmental Research and Public Health,MHE_S3002,15239247,78.08567536071459,2.602855845357153,30,#0F8C8C
-2,Medicine,Medicine & Science in Sports & Exercise,MHE_S3003,14544163,273.8185295393138,2.106296381071645,130,#13A3A3
-3,Psychology,Proceedings of the Human Factors and Ergonomics Society Annual Meeting,MHE_S3004,4210176815,61.97441885484918,0.7746802356856147,80,#2CB4B4
-4,Biology,Scientific Reports,MHE_S3006,196734849,100.6428822989712,2.580586725614646,39,#009E73
-5,Neuroscience,Proceedings of the Human Factors and Ergonomics Society Annual Meeting,MHE_S3007,4210176815,18.38995955930551,0.5572715017971368,33,#22B88A
-6,Bio and Biomedical Engineering,Medicine & Science in Sports & Exercise,MHE_S3008,14544163,2.054749633965217,0.06421092606141304,32,#A36F34
-7,Computer Science,Lecture notes in computer science,MHE_S3015,106296714,436.2438476512582,2.627974985850953,166,#0B3A8C
-8,Earth and Planetary Sciences,Journal of Climate,MHE_S3016,80591372,90.35876941619377,1.613549453860603,56,#2F6BC2
-9,Environmental Science,Bulletin of the American Meteorological Society,MHE_S3017,140302479,150.2668116899944,4.553539748181648,33,#4C84D9
-10,Materials Science,Physical review. B./Physical review. B,MHE_S3018,4210237713,65.98392790909787,1.736419155502576,38,#002366
-11,Physics,The Astrophysical Journal,MHE_S3020,1980519,987.2943396259315,3.616462782512569,273,#5A91E8
-12,Business and Management,Cambridge University Press eBooks,MHE_S3021,4306462995,33.26123856579594,1.108707952193198,30,#8E33B3
-13,Economics,Public Choice,MHE_S3022,7424199,95.28137002541933,2.507404474353141,38,#73009E
-14,Education,Innovations in Teaching & Learning Conference Proceedings,MHE_S3023,4306513399,5.691691784328688,0.02710329421108899,210,#A44CC6
-15,Political Science,Cambridge University Press eBooks,MHE_S3024,4306462995,280.6642723179014,1.883652834348332,149,#4A006B
-16,Social Sciences,Cambridge University Press eBooks,MHE_S3025,4306462995,26.16878933487041,0.608576496159777,43,#5E1987
+subject_name,journal_name,works_count,mean_fwci,sum_fwci,hex_colour
+Biomedical Sciences,Cancer Research,47,0.38,17.84,#0B6E6E
+Health Professions,International Journal of Environmental Research and Public Health,30,2.6,78.09,#0F8C8C
+Medicine,Medicine & Science in Sports & Exercise,130,2.11,273.82,#13A3A3
+Psychology,Proceedings of the Human Factors and Ergonomics Society Annual Meeting,80,0.77,61.97,#2CB4B4
+Biology,Scientific Reports,39,2.58,100.64,#009E73
+Neuroscience,Proceedings of the Human Factors and Ergonomics Society Annual Meeting,33,0.56,18.39,#22B88A
+Bio and Biomedical Engineering,Medicine & Science in Sports & Exercise,32,0.06,2.05,#A36F34
+Computer Science,Lecture notes in computer science,166,2.63,436.24,#0B3A8C
+Earth and Planetary Sciences,Journal of Climate,56,1.61,90.36,#2F6BC2
+Environmental Science,Bulletin of the American Meteorological Society,33,4.55,150.27,#4C84D9
+Materials Science,Physical review. B./Physical review. B,38,1.74,65.98,#002366
+Physics,The Astrophysical Journal,273,3.62,987.29,#5A91E8
+Business and Management,Cambridge University Press eBooks,30,1.11,33.26,#8E33B3
+Economics,Public Choice,38,2.51,95.28,#73009E
+Education,Innovations in Teaching & Learning Conference Proceedings,210,0.03,5.69,#A44CC6
+Political Science,Cambridge University Press eBooks,149,1.88,280.66,#4A006B
+Social Sciences,Cambridge University Press eBooks,43,0.61,26.17,#5E1987
