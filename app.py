@@ -1,3 +1,4 @@
+
 import streamlit as st
 from engine import load_data, recommend, recommend_researchers
 
@@ -6,112 +7,126 @@ st.set_page_config(
     layout="wide"
 )
 
-# Brand colours
 NAVY = "rgb(10, 40, 60)"
 CORAL = "rgb(236, 92, 60)"
 OCEAN = "rgb(134, 215, 216)"
+WHITE = "rgb(255, 255, 255)"
 
-st.markdown(f'''
+st.markdown("""
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Oswald:wght@700&display=swap");
 
-html, body, [class*="css"]  {{
+html, body, [class*="css"] {
     font-family: "Montserrat", Arial, sans-serif;
-}}
+    color: rgb(255, 255, 255);
+}
 
-.block-container {{
+.stApp {
+    background: linear-gradient(180deg, rgb(10, 40, 60) 0%, rgb(6, 24, 36) 100%);
+}
+
+.block-container {
     padding-top: 1.6rem;
     padding-bottom: 2rem;
-}}
+}
 
-.main-title {{
+.main-title {
     font-family: "Oswald", Arial, sans-serif;
     font-size: 2.9rem;
     font-weight: 700;
-    color: {NAVY};
+    color: rgb(236, 92, 60);
     text-transform: uppercase;
     line-height: 1.0;
     margin-bottom: 0.25rem;
     letter-spacing: 0.02em;
-}}
+}
 
-.brand-tagline {{
+.brand-tagline {
     font-family: "Montserrat", Arial, sans-serif;
-    color: {CORAL};
+    color: rgb(255, 255, 255);
     font-size: 1.05rem;
-    font-weight: 600;
+    font-weight: 500;
     margin-bottom: 1.2rem;
-}}
+}
 
-.section-heading {{
+.section-heading {
     font-family: "Oswald", Arial, sans-serif;
-    color: {NAVY};
+    color: rgb(236, 92, 60);
     text-transform: uppercase;
     letter-spacing: 0.03em;
-}}
+}
 
-div[data-testid="stMetric"] {{
-    background: white;
-    border: 1px solid rgba(10, 40, 60, 0.10);
-    border-left: 6px solid {CORAL};
+.small-note, p, li, label, .stMarkdown, .stText {
+    color: rgb(255, 255, 255) !important;
+}
+
+div[data-testid="stMetric"] {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-left: 6px solid rgb(236, 92, 60);
     border-radius: 14px;
     padding: 0.3rem 0.6rem;
-    box-shadow: 0 2px 10px rgba(10, 40, 60, 0.06);
-}}
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+}
 
-div[data-testid="stMetricLabel"] {{
-    color: {NAVY};
+div[data-testid="stMetricLabel"] {
+    color: rgb(255, 255, 255);
     font-weight: 600;
-}}
+}
 
-div[data-testid="stMetricValue"] {{
-    color: {NAVY};
+div[data-testid="stMetricValue"] {
+    color: rgb(236, 92, 60);
     font-family: "Oswald", Arial, sans-serif;
-}}
+}
 
-.stButton > button, .stDownloadButton > button {{
-    background-color: {NAVY};
-    color: white;
+.stButton > button, .stDownloadButton > button {
+    background-color: rgb(236, 92, 60);
+    color: rgb(255, 255, 255);
     border: none;
     border-radius: 10px;
     font-weight: 600;
-}}
+}
 
-.stButton > button:hover, .stDownloadButton > button:hover {{
-    background-color: {CORAL};
-    color: white;
-}}
+.stButton > button:hover, .stDownloadButton > button:hover {
+    background-color: rgb(134, 215, 216);
+    color: rgb(10, 40, 60);
+}
 
-[data-testid="stSidebar"] {{
-    background: rgba(134, 215, 216, 0.10);
-}}
+[data-testid="stSidebar"] {
+    background: rgba(255, 255, 255, 0.04);
+}
 
-.insight-box {{
-    background: rgba(134, 215, 216, 0.15);
-    border: 1px solid rgba(10, 40, 60, 0.12);
-    border-left: 6px solid {OCEAN};
+.insight-box {
+    background: rgba(134, 215, 216, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-left: 6px solid rgb(134, 215, 216);
     border-radius: 14px;
     padding: 1rem 1.1rem;
-    color: {NAVY};
-}}
+    color: rgb(255, 255, 255);
+}
 
-.small-note {{
-    color: {NAVY};
-    opacity: 0.8;
-}}
+hr {
+    border-color: rgba(255, 255, 255, 0.14);
+}
 
-hr {{
-    border-color: rgba(10, 40, 60, 0.12);
-}}
+div[data-testid="stDataFrame"] {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+}
+
+[data-testid="stInfo"], [data-testid="stSuccess"] {
+    background: rgba(255, 255, 255, 0.06);
+    color: rgb(255, 255, 255);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+}
 </style>
-''', unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
 inst_df, res_df = load_data("institutions.csv", "researchers.csv")
 
-# Header
 logo_col, title_col = st.columns([1.2, 4.8])
 with logo_col:
-    st.image("CONNECT51_ORANGE.png", width=260)
+    st.image("CONNECT51_WHITE.png", width=260)
 with title_col:
     st.markdown('<div class="main-title">PARTNERSHIP OPPORTUNITY ENGINE</div>', unsafe_allow_html=True)
     st.markdown('<div class="brand-tagline">Powering global connections in higher education</div>', unsafe_allow_html=True)
@@ -121,8 +136,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Sidebar
-st.sidebar.image("CONNECT51_ORANGE.png", width=180)
+st.sidebar.image("CONNECT51_WHITE.png", width=180)
 st.sidebar.markdown("## Connect51 Controls")
 institution = st.sidebar.selectbox("Source institution", sorted(inst_df["institution_name"].unique()))
 subject = st.sidebar.selectbox("Subject area", sorted(inst_df["subject_area"].unique()))
@@ -162,7 +176,7 @@ if run:
 
         st.markdown('<h3 class="section-heading">Connect51 Strategy Insight</h3>', unsafe_allow_html=True)
         st.markdown(
-            f'''
+            f"""
             <div class="insight-box">
             <b>AI Recommendation</b><br><br>
             The strongest immediate collaboration opportunity appears to be <b>{top_partner}</b> in <b>{top_country}</b>.<br><br>
@@ -171,7 +185,7 @@ if run:
             The most effective next move is to start with a focused outreach plan built around the top 3 institutions and
             1–2 high-priority researchers.
             </div>
-            ''',
+            """,
             unsafe_allow_html=True,
         )
 
