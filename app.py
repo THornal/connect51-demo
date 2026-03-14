@@ -1,16 +1,11 @@
-
 import streamlit as st
+import pydeck as pdk
 from engine import load_data, recommend, recommend_researchers
 
 st.set_page_config(
     page_title="Connect51 Partnership Opportunity Engine",
     layout="wide"
 )
-
-NAVY = "rgb(10, 40, 60)"
-CORAL = "rgb(236, 92, 60)"
-OCEAN = "rgb(134, 215, 216)"
-WHITE = "rgb(255, 255, 255)"
 
 st.markdown("""
 <style>
@@ -105,10 +100,6 @@ div[data-testid="stMetricValue"] {
     color: rgb(255, 255, 255);
 }
 
-hr {
-    border-color: rgba(255, 255, 255, 0.14);
-}
-
 div[data-testid="stDataFrame"] {
     background: rgba(255, 255, 255, 0.03);
     border-radius: 12px;
@@ -162,6 +153,42 @@ if run:
         hide_index=True,
     )
 
+    st.markdown('<h3 class="section-heading">Global Opportunity Map</h3>', unsafe_allow_html=True)
+    map_df = results.merge(
+        inst_df[["institution_name", "latitude", "longitude"]],
+        on="institution_name",
+        how="left"
+    ).dropna(subset=["latitude", "longitude"]).copy()
+
+    if not map_df.empty:
+        map_df["size"] = map_df["match_score"] * 1200
+
+        layer = pdk.Layer(
+            "ScatterplotLayer",
+            data=map_df,
+            get_position="[longitude, latitude]",
+            get_radius="size",
+            get_fill_color=[236, 92, 60, 180],
+            pickable=True,
+        )
+
+        view_state = pdk.ViewState(latitude=20, longitude=10, zoom=0.8, pitch=0)
+
+        tooltip = {
+            "html": "<b>{institution_name}</b><br/>{country}<br/>Score: {match_score}<br/>{strategy_type}",
+            "style": {"backgroundColor": "rgba(10, 40, 60, 0.92)", "color": "white"},
+        }
+
+        st.pydeck_chart(
+            pdk.Deck(
+                layers=[layer],
+                initial_view_state=view_state,
+                tooltip=tooltip,
+                map_style="mapbox://styles/mapbox/dark-v10",
+            ),
+            use_container_width=True,
+        )
+
     st.markdown('<h3 class="section-heading">Partner Score Comparison</h3>', unsafe_allow_html=True)
     chart = results.set_index("institution_name")["match_score"]
     st.bar_chart(chart)
@@ -182,8 +209,7 @@ if run:
             The strongest immediate collaboration opportunity appears to be <b>{top_partner}</b> in <b>{top_country}</b>.<br><br>
             This institution leads the shortlist with a match score of <b>{top_score}</b>, indicating strong topic alignment,
             collaboration potential, and strategic relevance.<br><br>
-            The most effective next move is to start with a focused outreach plan built around the top 3 institutions and
-            1–2 high-priority researchers.
+            The map above highlights where the strongest opportunities are concentrated globally, helping frame a more visual partnership strategy.
             </div>
             """,
             unsafe_allow_html=True,
@@ -193,6 +219,6 @@ if run:
         st.success(f"1. Prioritise institutional outreach to {top_partner} in {top_country}.")
         if not researcher_results.empty:
             st.success(f"2. Begin with a researcher-level introduction to {researcher_results.iloc[0]['researcher_name']}.")
-        st.success("3. Use the top partner shortlist to shape a focused collaboration strategy around the highest-scoring opportunities.")
+        st.success("3. Use the global map and shortlist together to shape a focused collaboration strategy around the highest-scoring opportunities.")
 else:
     st.info("Use the controls on the left, then click 'Generate Opportunities'.")
