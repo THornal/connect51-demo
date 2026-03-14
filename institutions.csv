@@ -1,7 +1,0 @@
-institution_name,country,region,subject_area,topics,impact_score,intl_collab_score,strategic_region_score,latitude,longitude
-University of Malaya,Malaysia,APAC,Computer Science,"ai;machine learning;robotics",78,65,80,3.1200,101.6540
-KAIST,South Korea,APAC,Computer Science,"ai;robotics;semiconductors",92,88,75,36.3721,127.3620
-University of Melbourne,Australia,APAC,Computer Science,"data science;ai;health informatics",89,82,70,-37.7963,144.9614
-National University of Singapore,Singapore,APAC,Computer Science,"ai;machine learning;computer vision",94,91,72,1.2966,103.7764
-MIT,USA,North America,Computer Science,"ai;robotics;machine learning",98,95,60,42.3601,-71.0942
-Stanford University,USA,North America,Computer Science,"ai;data science;machine learning",97,94,60,37.4275,-122.1697
