@@ -26,8 +26,12 @@ html, body, [class*="css"] {color: white;}
 section[data-testid="stSidebar"] {
     min-width: 320px !important;
     max-width: 320px !important;
+    transform: none !important;
+    visibility: visible !important;
 }
-
+[data-testid="collapsedControl"] {
+    display: none !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -139,6 +143,7 @@ st.write("This restored version includes both the original demo features and the
 
 # Sidebar
 st.sidebar.title("Connect51 Intelligence Platform")
+st.sidebar.markdown("### Platform Modules")
 module = st.sidebar.radio("Platform Modules", ["Dashboard", "Partnership Intelligence", "Analysis Showcase", "Collaboration Network"])
 
 if module == "Dashboard":
