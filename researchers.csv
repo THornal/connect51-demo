@@ -1,17 +1,6 @@
 researcher_name,institution_name,country,subject_area,topics,output_score,impact_score,collaboration_score
 Dr Aisha Rahman,University of Malaya,Malaysia,Computer Science,ai;machine learning,72,68,61
 Prof Young Hyun Kim,KAIST,South Korea,Computer Science,robotics;semiconductors;ai,95,91,84
-Dr Min-Jae Park,KAIST,South Korea,Computer Science,robotics;control systems,88,85,79
 Dr Emily Carter,University of Melbourne,Australia,Computer Science,data science;ai,88,86,79
 Prof Michael Tan,National University of Singapore,Singapore,Computer Science,machine learning;ai,92,90,86
-Dr Kenji Watanabe,University of Tokyo,Japan,Computer Science,robotics;autonomous systems,90,87,80
-Dr Li Wei,Tsinghua University,China,Computer Science,ai;machine learning,93,91,84
-Prof James Thornton,Imperial College London,UK,Computer Science,robotics;systems engineering,94,90,85
-Dr Stefan Müller,ETH Zurich,Switzerland,Computer Science,control systems;robotics,96,92,88
 Dr David Brooks,MIT,USA,Computer Science,ai;robotics;machine learning,97,94,90
-Dr Sarah Klein,Stanford University,USA,Computer Science,ai;data science,96,93,89
-Dr Aaron Patel,University of Toronto,Canada,Computer Science,deep learning;ai,94,92,87
-Dr Lukas Schneider,Technical University of Munich,Germany,Computer Science,robotics;control systems,92,88,82
-Dr Soo Jin Park,Seoul National University,South Korea,Computer Science,ai;data science,91,87,81
-Dr Hannah Cooper,University of Sydney,Australia,Computer Science,ai;robotics,90,85,80
-Prof Daniel Lim,Nanyang Technological University,Singapore,Computer Science,robotics;machine learning,94,91,88
