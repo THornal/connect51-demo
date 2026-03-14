@@ -69,7 +69,7 @@ div[data-testid="stMetricValue"] {
     font-family: "Oswald", Arial, sans-serif;
 }
 
-.stButton > button {
+.stButton > button, .stDownloadButton > button {
     background-color: rgb(236,92,60);
     color: rgb(255,255,255);
     border: none;
@@ -77,7 +77,7 @@ div[data-testid="stMetricValue"] {
     font-weight: 600;
 }
 
-.stButton > button:hover {
+.stButton > button:hover, .stDownloadButton > button:hover {
     background-color: rgb(134,215,216);
     color: rgb(10,40,60);
 }
@@ -105,12 +105,43 @@ div[data-testid="stDataFrame"] {
     color: rgb(255,255,255);
     border: 1px solid rgba(255,255,255,0.10);
 }
+
+.country-bar-wrap {
+    margin-top: 0.75rem;
+    margin-bottom: 1rem;
+}
+.country-row {
+    margin-bottom: 0.85rem;
+}
+.country-label {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 0.2rem;
+}
+.country-bar-bg {
+    width: 100%;
+    background: rgba(255,255,255,0.08);
+    border-radius: 999px;
+    height: 14px;
+    overflow: hidden;
+}
+.country-bar-fill {
+    height: 14px;
+    background: rgb(236,92,60);
+    border-radius: 999px;
+}
+.country-subtext {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.85);
+    margin-top: 0.15rem;
+}
 </style>
 """, unsafe_allow_html=True)
 
 inst_df, res_df = load_data("institutions.csv", "researchers.csv")
 
-# Header
 col1, col2 = st.columns([1,5])
 with col1:
     st.image("CONNECT51_WHITE.png", width=220)
@@ -120,7 +151,6 @@ with col2:
 
 st.write("Identify the institutions and researchers a university should collaborate with next.")
 
-# Sidebar
 st.sidebar.image("CONNECT51_WHITE.png", width=160)
 st.sidebar.markdown("## Connect51 Controls")
 
@@ -160,7 +190,7 @@ def build_narrative(source_inst, results_df, researcher_df):
     The first practical next step is to begin with a researcher-level introduction, starting with {top_researcher},
     and build a targeted engagement plan around the top three institutions in the ranking.
 
-    Overall, the current data indicates a focused, region-led partnership strategy is likely to generate the
+    Overall, the current data indicates a focused, country-led partnership strategy is likely to generate the
     strongest results, especially where topic alignment and collaboration intensity are already high.
     """.strip()
 
@@ -195,28 +225,54 @@ if run:
     <b>{top_partner}</b> located in <b>{top_country}</b>.<br><br>
     This partner ranks highest due to strong research alignment, collaboration potential,
     and institutional impact.<br><br>
-    <b>Regional opportunity distribution:</b><br>
+    <b>Country opportunity distribution:</b><br>
     {country_counts}<br><br>
     This suggests the most promising partnership clusters currently sit within these
-    regions. A focused outreach strategy targeting the top-ranked institutions in
-    these countries is likely to deliver the strongest collaboration outcomes.
+    countries. A focused outreach strategy targeting the top-ranked institutions in
+    these locations is likely to deliver the strongest collaboration outcomes.
     </div>
     """
     st.markdown(strategy_text, unsafe_allow_html=True)
 
-    # Regional heat map summary panel
-    st.markdown('<h3 class="section-heading">Opportunity Heat Map by Region</h3>', unsafe_allow_html=True)
-    region_summary = (
-        results.merge(inst_df[["institution_name", "region"]], on="institution_name", how="left")
-        .groupby("region", as_index=False)
-        .agg(opportunities=("institution_name", "count"),
-             average_match_score=("match_score", "mean"))
+    st.markdown('<h3 class="section-heading">Opportunity Heat Map by Country</h3>', unsafe_allow_html=True)
+
+    country_summary = (
+        results.groupby("country", as_index=False)
+        .agg(
+            opportunities=("institution_name", "count"),
+            average_match_score=("match_score", "mean")
+        )
         .sort_values(["opportunities", "average_match_score"], ascending=False)
     )
-    region_summary["average_match_score"] = region_summary["average_match_score"].round(1)
-    st.dataframe(region_summary, use_container_width=True, hide_index=True)
-    region_chart = region_summary.set_index("region")["opportunities"]
-    st.bar_chart(region_chart)
+    country_summary["average_match_score"] = country_summary["average_match_score"].round(1)
+
+    st.dataframe(country_summary, use_container_width=True, hide_index=True)
+
+    max_opps = country_summary["opportunities"].max()
+    st.markdown('<div class="country-bar-wrap">', unsafe_allow_html=True)
+
+    for _, row in country_summary.iterrows():
+        width_pct = (row["opportunities"] / max_opps) * 100 if max_opps > 0 else 0
+
+        st.markdown(
+            f"""
+            <div class="country-row">
+                <div class="country-label">
+                    <span>{row['country']}</span>
+                    <span>{int(row['opportunities'])}</span>
+                </div>
+                <div class="country-bar-bg">
+                    <div class="country-bar-fill" style="width: {width_pct}%;"></div>
+                </div>
+                <div class="country-subtext">
+                    Average match score: {row['average_match_score']}
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+    st.markdown('</div>', unsafe_allow_html=True)
 
     st.markdown('<h3 class="section-heading">Global Opportunity Map</h3>', unsafe_allow_html=True)
     map_df = results.merge(
@@ -303,7 +359,7 @@ if run:
     st.success(f"1. Prioritise institutional outreach to {top_partner} in {top_country}.")
     if not researcher_results.empty:
         st.success(f"2. Begin with a researcher-level introduction to {researcher_results.iloc[0]['researcher_name']}.")
-    st.success("3. Use the map, regional heat map, and narrative briefing together to shape a focused collaboration strategy.")
+    st.success("3. Use the map, country heat map, and narrative briefing together to shape a focused collaboration strategy.")
 
 else:
     st.info("Use the controls on the left and click 'Generate Opportunities'.")
