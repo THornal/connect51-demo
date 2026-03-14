@@ -4,7 +4,7 @@ import pandas as pd
 import pydeck as pdk
 from engine import load_data, recommend, recommend_researchers
 
-st.set_page_config(page_title="Connect51 Intelligence Platform", layout="wide")
+st.set_page_config(page_title="Connect51 Intelligence Platform", layout="wide", initial_sidebar_state="expanded")
 
 st.markdown("""
 <style>
@@ -22,6 +22,12 @@ html, body, [class*="css"] {color: white;}
 .country-bar-bg { width:100%; background:rgba(255,255,255,0.08); border-radius:999px; height:14px; overflow:hidden; }
 .country-bar-fill { height:14px; background:rgb(236,92,60); border-radius:999px; }
 .country-subtext { font-size:0.9rem; color:rgba(255,255,255,0.85); margin-top:0.15rem; }
+
+section[data-testid="stSidebar"] {
+    min-width: 320px !important;
+    max-width: 320px !important;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
